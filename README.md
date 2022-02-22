@@ -1,3 +1,5 @@
+# Datto Tech Test
+
 ## To Run Locally
 
 1.  run `git clone https://github.com/CharlieJT/datto-tech-test.git` in the cli
