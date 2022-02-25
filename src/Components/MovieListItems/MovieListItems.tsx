@@ -7,12 +7,14 @@ import {
 type MovieListItemsTypes = {
 	data: any;
 	listTitle: string;
+	removeMovieHandler: (movie: any) => void;
 	modalOpenHandler: (movie: any) => void;
 };
 
 export const MovieListItems = ({
 	data,
 	listTitle,
+	removeMovieHandler,
 	modalOpenHandler,
 }: MovieListItemsTypes): React.ReactElement => {
 	return (
@@ -24,6 +26,7 @@ export const MovieListItems = ({
 							<MovieListItem
 								key={movie.id}
 								movie={movie}
+								removeMovieHandler={removeMovieHandler}
 								modalOpenHandler={modalOpenHandler}
 							/>
 					  ))

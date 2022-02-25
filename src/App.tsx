@@ -1,17 +1,31 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
 import "./App.css";
-import { Header, SideBar, Main, Modal } from "./Components";
-import { useAxiosRequest } from "./hooks/useAxiosRequest";
-import { dataList } from "./utils/dataList";
-import { useModal } from "./hooks/useModal";
+import { Header, SideBar, Main } from "./Components/Layout";
+import { Modal } from "./Components/UI";
+import { useAxiosRequest } from "./hooks";
+import { dataList } from "./utils";
 
 const App = (): React.ReactElement => {
-	const { data, loading, error, listTitle, request, fetchDataHandler } =
-		useAxiosRequest();
-	const { open, movieSelect, modalOpenHandler, modalCloseHandler } = useModal();
+	const {
+		data,
+		loading,
+		error,
+		listTitle,
+		request,
+		fetchDataHandler,
+		removeMovieHandler,
+		editMovieHandler,
+		open,
+		movieSelect,
+		modalCloseHandler,
+		modalOpenHandler,
+		sideDrawerOpen,
+		toggleSideDrawerHandler,
+		closeSideDrawerHandler,
+	} = useAxiosRequest();
 
-	useEffect(() => fetchDataHandler(dataList[0]), []);
+	useEffect((): void => fetchDataHandler(dataList[0]), []);
 
 	return (
 		<>
@@ -19,14 +33,24 @@ const App = (): React.ReactElement => {
 				open={open}
 				movieSelect={movieSelect}
 				modalCloseHandler={modalCloseHandler}
+				editMovieHandler={editMovieHandler}
 			/>
-			<Header />
-			<SideBar request={request} fetchDataHandler={fetchDataHandler} />
+			<Header
+				sideDrawerOpen={sideDrawerOpen}
+				toggleSideDrawerHandler={toggleSideDrawerHandler}
+			/>
+			<SideBar
+				request={request}
+				fetchDataHandler={fetchDataHandler}
+				sideDrawerOpen={sideDrawerOpen}
+				closeSideDrawerHandler={closeSideDrawerHandler}
+			/>
 			<Main
 				data={data}
 				loading={loading}
 				listTitle={listTitle}
 				error={error}
+				removeMovieHandler={removeMovieHandler}
 				modalOpenHandler={modalOpenHandler}
 			/>
 		</>

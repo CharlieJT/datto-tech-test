@@ -8,7 +8,7 @@ type UseModalTypes = {
 };
 
 export const useModal = (): UseModalTypes => {
-	const [open, setOpen] = useState(false);
+	const [open, setOpen] = useState<boolean>(false);
 	const [movieSelect, setMovieSelect] = useState({});
 
 	const modalOpenHandler = (movie: any): void => {

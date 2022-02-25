@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
-import { ListItemProps } from "../utils/dataList";
+import { ListItemProps } from "../utils";
+import { useModal, useSideDrawer } from ".";
 
 type UseAxiosRequestTypes = {
 	data: any;
@@ -9,9 +10,21 @@ type UseAxiosRequestTypes = {
 	listTitle: string;
 	request: string;
 	fetchDataHandler: (listItem: ListItemProps) => void;
+	removeMovieHandler: (movie: any) => void;
+	editMovieHandler: (id: string, movie: any) => void;
+	open: boolean;
+	movieSelect: any;
+	modalCloseHandler: () => void;
+	modalOpenHandler: (movie: any) => void;
+	sideDrawerOpen: boolean;
+	toggleSideDrawerHandler: () => void;
+	closeSideDrawerHandler: () => void;
 };
 
 export const useAxiosRequest = (): UseAxiosRequestTypes => {
+	const { open, movieSelect, modalCloseHandler, modalOpenHandler } = useModal();
+	const { sideDrawerOpen, toggleSideDrawerHandler, closeSideDrawerHandler } =
+		useSideDrawer();
 	const [data, setData] = useState([]);
 	const [loading, setLoading] = useState<boolean>(false);
 	const [error, setError] = useState<string>("");
@@ -23,6 +36,7 @@ export const useAxiosRequest = (): UseAxiosRequestTypes => {
 		setData([]);
 		setRequest(query);
 		setListTitle(title);
+		closeSideDrawerHandler();
 		if (error) {
 			setError("");
 		}
@@ -40,5 +54,38 @@ export const useAxiosRequest = (): UseAxiosRequestTypes => {
 				setError(err.message);
 			});
 	};
-	return { data, loading, error, listTitle, request, fetchDataHandler };
+	const removeMovieHandler = (selectedMovie: any): void => {
+		const filteredData = data.filter(
+			(movie: any): boolean => movie.id !== selectedMovie.id,
+		);
+		setData(filteredData);
+	};
+	const editMovieHandler = (id: string, newMovieTitle: string): void => {
+		const currentMovieList: any = [...data];
+		const findMovieIndex: any = currentMovieList.findIndex(
+			(movie: any): boolean => movie.id === id,
+		);
+		currentMovieList[findMovieIndex] = {
+			...currentMovieList[findMovieIndex],
+			fullTitle: newMovieTitle,
+		};
+		setData(currentMovieList);
+	};
+	return {
+		data,
+		loading,
+		error,
+		listTitle,
+		request,
+		fetchDataHandler,
+		removeMovieHandler,
+		editMovieHandler,
+		open,
+		movieSelect,
+		modalCloseHandler,
+		modalOpenHandler,
+		sideDrawerOpen,
+		toggleSideDrawerHandler,
+		closeSideDrawerHandler,
+	};
 };

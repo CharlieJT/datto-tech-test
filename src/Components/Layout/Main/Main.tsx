@@ -1,5 +1,5 @@
 import { MainStyles } from "./MainStyles";
-import { Loader } from "../../UI/Loader/Loader";
+import { Loader } from "../../UI";
 import { MovieListItems } from "../../MovieListItems/MovieListItems";
 
 type MainTypes = {
@@ -7,6 +7,7 @@ type MainTypes = {
 	loading: boolean;
 	listTitle: string;
 	error: any;
+	removeMovieHandler: (movie: any) => void;
 	modalOpenHandler: (movie: any) => void;
 };
 
@@ -15,6 +16,7 @@ const Main = ({
 	loading,
 	listTitle,
 	error,
+	removeMovieHandler,
 	modalOpenHandler,
 }: MainTypes): React.ReactElement => {
 	let output: string | React.ReactElement = "This is the Output";
@@ -27,6 +29,7 @@ const Main = ({
 			<MovieListItems
 				data={data}
 				listTitle={listTitle}
+				removeMovieHandler={removeMovieHandler}
 				modalOpenHandler={modalOpenHandler}
 			/>
 		);
