@@ -1,5 +1,7 @@
 # Datto Tech Test
 
+Live project can be found here - [Datto Tech Test](https://datto-tech-test.netlify.app/)
+
 ## To Run Locally
 
 1.  run `git clone https://github.com/CharlieJT/datto-tech-test.git` in the cli
