@@ -43,11 +43,13 @@ const App = (): React.ReactElement => {
 			{useMemo(
 				(): JSX.Element => (
 					<Header
+						open={open}
+						modalCloseHandler={modalCloseHandler}
 						sideDrawerOpen={sideDrawerOpen}
 						toggleSideDrawerHandler={toggleSideDrawerHandler}
 					/>
 				),
-				[sideDrawerOpen],
+				[open, sideDrawerOpen],
 			)}
 			{useMemo(
 				(): JSX.Element => (
