@@ -1,14 +1,15 @@
 import { MainStyles } from "./MainStyles";
 import { Loader } from "../../UI";
 import { MovieListItems } from "../../MovieListItems/MovieListItems";
+import { MoviesProps, MovieProps } from "../../../utils";
 
 type MainTypes = {
-	data: any;
+	data: MoviesProps;
 	loading: boolean;
 	listTitle: string;
 	error: any;
-	removeMovieHandler: (movie: any) => void;
-	modalOpenHandler: (movie: any) => void;
+	removeMovieHandler: (movie: MovieProps) => void;
+	modalOpenHandler: (movie: MovieProps) => void;
 };
 
 const Main = ({

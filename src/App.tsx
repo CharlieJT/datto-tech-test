@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import "./App.css";
 import { Header, SideBar, Main } from "./Components/Layout";
 import { Modal } from "./Components/UI";
@@ -29,30 +29,50 @@ const App = (): React.ReactElement => {
 
 	return (
 		<>
-			<Modal
-				open={open}
-				movieSelect={movieSelect}
-				modalCloseHandler={modalCloseHandler}
-				editMovieHandler={editMovieHandler}
-			/>
-			<Header
-				sideDrawerOpen={sideDrawerOpen}
-				toggleSideDrawerHandler={toggleSideDrawerHandler}
-			/>
-			<SideBar
-				request={request}
-				fetchDataHandler={fetchDataHandler}
-				sideDrawerOpen={sideDrawerOpen}
-				closeSideDrawerHandler={closeSideDrawerHandler}
-			/>
-			<Main
-				data={data}
-				loading={loading}
-				listTitle={listTitle}
-				error={error}
-				removeMovieHandler={removeMovieHandler}
-				modalOpenHandler={modalOpenHandler}
-			/>
+			{useMemo(
+				(): JSX.Element => (
+					<Modal
+						open={open}
+						movieSelect={movieSelect}
+						modalCloseHandler={modalCloseHandler}
+						editMovieHandler={editMovieHandler}
+					/>
+				),
+				[open, movieSelect],
+			)}
+			{useMemo(
+				(): JSX.Element => (
+					<Header
+						sideDrawerOpen={sideDrawerOpen}
+						toggleSideDrawerHandler={toggleSideDrawerHandler}
+					/>
+				),
+				[sideDrawerOpen],
+			)}
+			{useMemo(
+				(): JSX.Element => (
+					<SideBar
+						request={request}
+						fetchDataHandler={fetchDataHandler}
+						sideDrawerOpen={sideDrawerOpen}
+						closeSideDrawerHandler={closeSideDrawerHandler}
+					/>
+				),
+				[request, sideDrawerOpen],
+			)}
+			{useMemo(
+				(): JSX.Element => (
+					<Main
+						data={data}
+						loading={loading}
+						listTitle={listTitle}
+						error={error}
+						removeMovieHandler={removeMovieHandler}
+						modalOpenHandler={modalOpenHandler}
+					/>
+				),
+				[data, loading, listTitle, error],
+			)}
 		</>
 	);
 };

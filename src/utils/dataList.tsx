@@ -4,7 +4,31 @@ type ListItemProps = {
 	query: string;
 };
 
-type TestDataProps = {
+type MovieProps = {
+	contentRating?: string;
+	directorList?: {
+		id: string;
+		name: string;
+	}[];
+	directors?: string;
+	genreList?: {
+		key: string;
+		value: string;
+	}[];
+	genres?: string;
+	metacriticRating?: string;
+	plot?: string;
+	releaseState?: string;
+	runtimeMins?: string;
+	runtimeStr?: string;
+	starList?: {
+		id: string;
+		name: string;
+	}[];
+	stars?: string;
+	gross?: string;
+	weekend?: string;
+	weeks?: string;
 	crew: string;
 	fullTitle: string;
 	id: string;
@@ -12,9 +36,12 @@ type TestDataProps = {
 	imDbRatingCount: string;
 	image: string;
 	rank: string;
+	rankUpDown?: string;
 	title: string;
 	year: string;
 };
+
+type MoviesProps = MovieProps[];
 
 const dataList: ListItemProps[] = [
 	{ id: 1, title: "Top 250 Movies", query: "Top250Movies" },
@@ -24,10 +51,9 @@ const dataList: ListItemProps[] = [
 	{ id: 5, title: "In Theaters", query: "InTheaters" },
 	{ id: 6, title: "Coming Soon", query: "ComingSoon" },
 	{ id: 7, title: "Box Office", query: "BoxOffice" },
-	{ id: 8, title: "Box Office All Time", query: "BoxOfficeAllTime" },
 ];
 
-const testData: TestDataProps[] = [
+const testData: MoviesProps = [
 	{
 		crew: "Frank Darabont (dir.), Tim Robbins, Morgan Freeman",
 		fullTitle: "The Shawshank Redemption (1994)",
@@ -40,7 +66,6 @@ const testData: TestDataProps[] = [
 		title: "The Shawshank Redemption",
 		year: "1994",
 	},
-
 	{
 		crew: "Francis Ford Coppola (dir.), Marlon Brando, Al Pacino",
 		fullTitle: "The Godfather (1972)",
@@ -128,4 +153,4 @@ const testData: TestDataProps[] = [
 ];
 
 export { dataList, testData };
-export type { ListItemProps };
+export type { ListItemProps, MoviesProps, MovieProps };

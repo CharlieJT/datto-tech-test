@@ -2,11 +2,12 @@ import { MovieListItemStyles } from "./MovieListItemStyles";
 import { Button } from "../../UI/Button/Button";
 import { AiFillEdit } from "react-icons/ai";
 import { MdDeleteForever } from "react-icons/md";
+import { MovieProps } from "../../../utils";
 
 type MovieListItemProps = {
-	movie: any;
-	removeMovieHandler: (movie: any) => void;
-	modalOpenHandler: (movie: any) => void;
+	movie: MovieProps;
+	removeMovieHandler: (movie: MovieProps) => void;
+	modalOpenHandler: (movie: MovieProps) => void;
 };
 
 export const MovieListItem = ({
